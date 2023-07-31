@@ -388,18 +388,15 @@ export function generateRandomIndex(prefix:string):string {
     if(prefix == null){
         prefix = "Sheet";
     }
-
-    let userAgent = window.navigator.userAgent.replace(/[^a-zA-Z0-9]/g, "").split("");
-
-    let mid = "";
-
-    for(let i = 0; i < 5; i++){
-        mid += userAgent[Math.round(Math.random() * (userAgent.length - 1))];
-    }
-
     let time = new Date().getTime();
+    return prefix + "_" + time;
 
-    return prefix + "_" + mid + "_" + time;
+    // let userAgent = window.navigator.userAgent.replace(/[^a-zA-Z0-9]/g, "").split("");
+    // let mid = "";
+    // for(let i = 0; i < 5; i++){
+    //     mid += userAgent[Math.round(Math.random() * (userAgent.length - 1))];
+    // }
+    // return prefix + "_" + mid + "_" + time;
 }
 
 
