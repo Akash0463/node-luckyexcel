@@ -1047,6 +1047,11 @@ export function getSqrefRawArrFormat(arr: string[]): string[] {
     }
   });
 
+  if (arr.length > 50000) {
+    console.log("[luckyexcel] Found total " + arr.length + " rows, keeping 1st 50000 rows.");
+    arr = arr.slice(0, 50000);
+  }
+
   const resultArr = arr.filter(
     (value, index, array) => array.indexOf(value) === index
   );
