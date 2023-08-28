@@ -132,6 +132,11 @@ export class LuckyFile extends LuckyFileBase {
         for(let key in sheets){
             let sheet = sheets[key];
             let sheetName = sheet.attributeList.name;
+            // Ignoring all hidden sheets.
+            if(sheet.attributeList.state == 'hidden') {
+                console.log("[luckyexcel] Ignoring hidden sheet - "+sheetName);
+                continue;
+            }
             let sheetId = sheet.attributeList["sheetId"];
             let rid = sheet.attributeList["r:id"];
             let sheetFile = this.getSheetFileBysheetId(rid);
