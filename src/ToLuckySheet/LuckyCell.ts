@@ -517,186 +517,186 @@ export class LuckySheetCelldata extends LuckySheetCelldataBase{
                         text = escapeCharacter(text);
 
                         //isContainMultiType(text) &&
-                        if(familyFont=="Roman" && text.length>0){
-                            let textArray = text.split("");
-                            let preWordType:string = null, wordText="", preWholef:string=null;
-                            let wholef = "Times New Roman";
-                            if(cellValue.ff!=null){
-                                wholef = cellValue.ff;
-                            }
+                        // if(familyFont=="Roman" && text.length>0){
+                        //     let textArray = text.split("");
+                        //     let preWordType:string = null, wordText="", preWholef:string=null;
+                        //     let wholef = "Times New Roman";
+                        //     if(cellValue.ff!=null){
+                        //         wholef = cellValue.ff;
+                        //     }
 
+                        //     let cellFormat = cellValue.ct;
+                        //     if(cellFormat==null){
+                        //         cellFormat = new LuckySheetCellFormat();
+                        //     }
+
+                        //     if(cellFormat.s==null){
+                        //         cellFormat.s = [];
+                        //     }
+
+                        //     for(let i=0;i<textArray.length;i++){
+                        //         let w = textArray[i];
+                        //         let type:string = null, ff=wholef;
+
+                        //         if(isChinese(w)){
+                        //             type = "c";
+                        //             ff="宋体";
+                        //         }
+                        //         else if(isJapanese(w)){
+                        //             type = "j";
+                        //             ff="Yu Gothic";
+                        //         }
+                        //         else if(isKoera(w)){
+                        //             type = "k";
+                        //             ff="Malgun Gothic";
+                        //         }
+                        //         else{
+                        //             type = "e";
+                        //         }
+
+                        //         if((type!=preWordType && preWordType!=null) || i==textArray.length-1){
+                        //             let InlineString = new LuckyInlineString();
+
+                        //             InlineString.ff = preWholef;
+
+                        //             if(cellValue.fc!=null){
+                        //                 InlineString.fc = cellValue.fc;
+                        //             }
+
+                        //             if(cellValue.fs!=null){
+                        //                 InlineString.fs = cellValue.fs;
+                        //             }
+
+                        //             if(cellValue.cl!=null){
+                        //                 InlineString.cl = cellValue.cl;
+                        //             }
+
+                        //             if(cellValue.un!=null){
+                        //                 InlineString.un = cellValue.un;
+                        //             }
+
+                        //             if(cellValue.bl!=null){
+                        //                 InlineString.bl = cellValue.bl;
+                        //             }
+
+                        //             if(cellValue.it!=null){
+                        //                 InlineString.it = cellValue.it;
+                        //             }
+
+                        //             if(i==textArray.length-1){
+                        //                 if(type==preWordType){
+                        //                     InlineString.ff = ff;
+                        //                     InlineString.v = wordText + w;
+                        //                 }
+                        //                 else{
+                        //                     InlineString.ff = preWholef;
+                        //                     InlineString.v = wordText;
+                        //                     cellFormat.s.push(InlineString);
+
+                        //                     let InlineStringLast = new LuckyInlineString();
+                        //                     InlineStringLast.ff = ff;
+                        //                     InlineStringLast.v = w;
+                        //                     if(cellValue.fc!=null){
+                        //                         InlineStringLast.fc = cellValue.fc;
+                        //                     }
+
+                        //                     if(cellValue.fs!=null){
+                        //                         InlineStringLast.fs = cellValue.fs;
+                        //                     }
+
+                        //                     if(cellValue.cl!=null){
+                        //                         InlineStringLast.cl = cellValue.cl;
+                        //                     }
+
+                        //                     if(cellValue.un!=null){
+                        //                         InlineStringLast.un = cellValue.un;
+                        //                     }
+
+                        //                     if(cellValue.bl!=null){
+                        //                         InlineStringLast.bl = cellValue.bl;
+                        //                     }
+
+                        //                     if(cellValue.it!=null){
+                        //                         InlineStringLast.it = cellValue.it;
+                        //                     }
+                        //                     cellFormat.s.push(InlineStringLast);
+
+                        //                     break;
+                        //                 }
+                        //             }
+                        //             else{
+                        //                 InlineString.v = wordText;
+                        //             }
+
+
+                        //             cellFormat.s.push(InlineString);
+
+                        //             wordText = w;
+                        //         }
+                        //         else{
+                        //             wordText += w;
+                        //         }
+
+
+                        //         preWordType = type;
+                        //         preWholef = ff;
+                        //     }
+
+                        //     cellFormat.t = "inlineStr";
+                        //     // cellFormat.s = [InlineString];
+                        //     cellValue.ct = cellFormat;
+                        //     // console.log(cellValue);
+                        // }
+                        // else{
+
+
+                        text = this.replaceSpecialWrap(text);
+
+                        if(text.indexOf("\r\n")>-1 || text.indexOf("\n")>-1){
+                            let InlineString = new LuckyInlineString();
+                            InlineString.v = text;
                             let cellFormat = cellValue.ct;
                             if(cellFormat==null){
                                 cellFormat = new LuckySheetCellFormat();
                             }
 
-                            if(cellFormat.s==null){
-                                cellFormat.s = [];
+                            if(cellValue.ff!=null){
+                                InlineString.ff = cellValue.ff;
                             }
 
-                            for(let i=0;i<textArray.length;i++){
-                                let w = textArray[i];
-                                let type:string = null, ff=wholef;
+                            if(cellValue.fc!=null){
+                                InlineString.fc = cellValue.fc;
+                            }
 
-                                if(isChinese(w)){
-                                    type = "c";
-                                    ff="宋体";
-                                }
-                                else if(isJapanese(w)){
-                                    type = "j";
-                                    ff="Yu Gothic";
-                                }
-                                else if(isKoera(w)){
-                                    type = "k";
-                                    ff="Malgun Gothic";
-                                }
-                                else{
-                                    type = "e";
-                                }
+                            if(cellValue.fs!=null){
+                                InlineString.fs = cellValue.fs;
+                            }
 
-                                if((type!=preWordType && preWordType!=null) || i==textArray.length-1){
-                                    let InlineString = new LuckyInlineString();
+                            if(cellValue.cl!=null){
+                                InlineString.cl = cellValue.cl;
+                            }
 
-                                    InlineString.ff = preWholef;
+                            if(cellValue.un!=null){
+                                InlineString.un = cellValue.un;
+                            }
 
-                                    if(cellValue.fc!=null){
-                                        InlineString.fc = cellValue.fc;
-                                    }
+                            if(cellValue.bl!=null){
+                                InlineString.bl = cellValue.bl;
+                            }
 
-                                    if(cellValue.fs!=null){
-                                        InlineString.fs = cellValue.fs;
-                                    }
-
-                                    if(cellValue.cl!=null){
-                                        InlineString.cl = cellValue.cl;
-                                    }
-
-                                    if(cellValue.un!=null){
-                                        InlineString.un = cellValue.un;
-                                    }
-
-                                    if(cellValue.bl!=null){
-                                        InlineString.bl = cellValue.bl;
-                                    }
-
-                                    if(cellValue.it!=null){
-                                        InlineString.it = cellValue.it;
-                                    }
-
-                                    if(i==textArray.length-1){
-                                        if(type==preWordType){
-                                            InlineString.ff = ff;
-                                            InlineString.v = wordText + w;
-                                        }
-                                        else{
-                                            InlineString.ff = preWholef;
-                                            InlineString.v = wordText;
-                                            cellFormat.s.push(InlineString);
-
-                                            let InlineStringLast = new LuckyInlineString();
-                                            InlineStringLast.ff = ff;
-                                            InlineStringLast.v = w;
-                                            if(cellValue.fc!=null){
-                                                InlineStringLast.fc = cellValue.fc;
-                                            }
-
-                                            if(cellValue.fs!=null){
-                                                InlineStringLast.fs = cellValue.fs;
-                                            }
-
-                                            if(cellValue.cl!=null){
-                                                InlineStringLast.cl = cellValue.cl;
-                                            }
-
-                                            if(cellValue.un!=null){
-                                                InlineStringLast.un = cellValue.un;
-                                            }
-
-                                            if(cellValue.bl!=null){
-                                                InlineStringLast.bl = cellValue.bl;
-                                            }
-
-                                            if(cellValue.it!=null){
-                                                InlineStringLast.it = cellValue.it;
-                                            }
-                                            cellFormat.s.push(InlineStringLast);
-
-                                            break;
-                                        }
-                                    }
-                                    else{
-                                        InlineString.v = wordText;
-                                    }
-
-
-                                    cellFormat.s.push(InlineString);
-
-                                    wordText = w;
-                                }
-                                else{
-                                    wordText += w;
-                                }
-
-
-                                preWordType = type;
-                                preWholef = ff;
+                            if(cellValue.it!=null){
+                                InlineString.it = cellValue.it;
                             }
 
                             cellFormat.t = "inlineStr";
-                            // cellFormat.s = [InlineString];
+                            cellFormat.s = [InlineString];
                             cellValue.ct = cellFormat;
-                            // console.log(cellValue);
                         }
                         else{
-
-
-                            text = this.replaceSpecialWrap(text);
-
-                            if(text.indexOf("\r\n")>-1 || text.indexOf("\n")>-1){
-                                let InlineString = new LuckyInlineString();
-                                InlineString.v = text;
-                                let cellFormat = cellValue.ct;
-                                if(cellFormat==null){
-                                    cellFormat = new LuckySheetCellFormat();
-                                }
-
-                                if(cellValue.ff!=null){
-                                    InlineString.ff = cellValue.ff;
-                                }
-
-                                if(cellValue.fc!=null){
-                                    InlineString.fc = cellValue.fc;
-                                }
-
-                                if(cellValue.fs!=null){
-                                    InlineString.fs = cellValue.fs;
-                                }
-
-                                if(cellValue.cl!=null){
-                                    InlineString.cl = cellValue.cl;
-                                }
-
-                                if(cellValue.un!=null){
-                                    InlineString.un = cellValue.un;
-                                }
-
-                                if(cellValue.bl!=null){
-                                    InlineString.bl = cellValue.bl;
-                                }
-
-                                if(cellValue.it!=null){
-                                    InlineString.it = cellValue.it;
-                                }
-
-                                cellFormat.t = "inlineStr";
-                                cellFormat.s = [InlineString];
-                                cellValue.ct = cellFormat;
-                            }
-                            else{
-                                cellValue.v = text;
-                                quotePrefix = "1";
-                            }
+                            cellValue.v = text;
+                            quotePrefix = "1";
                         }
+                        // }
 
                     }
                 }
