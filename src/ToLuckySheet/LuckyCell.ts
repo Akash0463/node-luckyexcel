@@ -44,7 +44,7 @@ export class LuckySheetCelldata extends LuckySheetCelldataBase{
     */
     private generateValue(s:string, t:string){
         let v = this.cell.getInnerElements("v");
-        let f = this.cell.getInnerElements("f");
+        // let f = this.cell.getInnerElements("f");
 
         if(v==null){
             v = this.cell.getInnerElements("t");
@@ -62,22 +62,22 @@ export class LuckySheetCelldata extends LuckySheetCelldataBase{
         let sharedStrings = this.sharedStrings;
         let cellValue = new LuckySheetCelldataValue();
 
-        if(f!=null){
-            let formula = f[0], attrList = formula.attributeList;
-            let t = attrList.t, ref = attrList.ref, si = attrList.si;
-            let formulaValue =f[0].value;
-            if(t=="shared"){
-                this._fomulaRef = ref;
-                this._formulaType = t;
-                this._formulaSi = si;
-            }
-            // console.log(ref, t, si);
-            if(ref!=null || (formulaValue!=null && formulaValue.length>0)){
-                formulaValue = escapeCharacter(formulaValue);
-                cellValue.f = "=" + formulaValue;
-            }
+        // if(f!=null){
+        //     let formula = f[0], attrList = formula.attributeList;
+        //     let t = attrList.t, ref = attrList.ref, si = attrList.si;
+        //     let formulaValue =f[0].value;
+        //     if(t=="shared"){
+        //         this._fomulaRef = ref;
+        //         this._formulaType = t;
+        //         this._formulaSi = si;
+        //     }
+        //     // console.log(ref, t, si);
+        //     if(ref!=null || (formulaValue!=null && formulaValue.length>0)){
+        //         formulaValue = escapeCharacter(formulaValue);
+        //         cellValue.f = "=" + formulaValue;
+        //     }
 
-        }
+        // }
 
         let familyFont = null;
         let quotePrefix;
@@ -691,6 +691,7 @@ export class LuckySheetCelldata extends LuckySheetCelldataBase{
                             cellFormat.t = "inlineStr";
                             cellFormat.s = [InlineString];
                             cellValue.ct = cellFormat;
+                            cellValue.v = text;
                         }
                         else{
                             cellValue.v = text;
