@@ -838,6 +838,7 @@ export class LuckySheetCelldata extends LuckySheetCelldataBase{
                     cellFormat.t = "inlineStr";
                     cellFormat.s = styles;
                     cellValue.ct = cellFormat;
+                    cellValue.v = styles.map(cell => cell.v).join('');
                 }
             }
             // to be confirmed
