@@ -17,11 +17,13 @@ export class LuckyFile extends LuckyFileBase {
     private sharedStrings:Element[]
     private calcChain:Element[]
     private imageList:ImageList
+    private rowsLimit: number;
 
-    constructor(files:IuploadfileList, fileName:string) {
+    constructor(files:IuploadfileList, fileName:string, rowsLimit:number) {
         super();
         this.files = files;
         this.fileName = fileName;
+        this.rowsLimit = rowsLimit;
         this.readXml = new ReadXml(files);
         this.getSheetNameList();
 
@@ -165,6 +167,7 @@ export class LuckyFile extends LuckyFileBase {
                         drawingFile:drawingFile,
                         drawingRelsFile: drawingRelsFile,
                         hide: hide,
+                        rowsLimit: this.rowsLimit
                     }
                 )
                 this.columnWidthSet = [];

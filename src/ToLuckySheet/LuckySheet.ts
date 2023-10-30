@@ -87,7 +87,8 @@ export class LuckySheet extends LuckySheetBase {
 
 
         this.generateConfigColumnLenAndHidden();
-        let cellOtherInfo:IcellOtherInfo =  this.generateConfigRowLenAndHiddenAddCell();
+        let rowsLimit = allFileOption.rowsLimit;
+        let cellOtherInfo:IcellOtherInfo =  this.generateConfigRowLenAndHiddenAddCell(rowsLimit);
         
         if(this.calcChain==null){
             this.calcChain = [];
@@ -394,8 +395,15 @@ export class LuckySheet extends LuckySheetBase {
     /**
     * @desc This will convert cols/col to luckysheet config of column'width
     */
-    private generateConfigRowLenAndHiddenAddCell():IcellOtherInfo{
+    private generateConfigRowLenAndHiddenAddCell(rowsLimit:number):IcellOtherInfo{
         let rows = this.readXml.getElementsByTagName("sheetData/row", this.sheetFile);
+        var totalRows = rows.length;
+        if (rowsLimit && rowsLimit > 0 && totalRows > rowsLimit) {
+            console.log("[luckyexcel] - Total Rows - "+totalRows);
+            console.log("[luckyexcel] - Max Rows limit - "+rowsLimit+", Removing extra rows.");
+            rows = rows.slice(0, rowsLimit);
+        }
+
         let cellOtherInfo:IcellOtherInfo = {};
         let formulaList:IformulaList = {};
         cellOtherInfo.formulaList = formulaList;
