@@ -176,8 +176,10 @@ export class LuckySheet extends LuckySheetBase {
             }
         }
       
+        //[kanverse] removing line as we dont process formula
         // dataVerification config
-        this.dataVerification = this.generateConfigDataValidations();
+        // this.dataVerification = this.generateConfigDataValidations();
+        this.dataVerification = {};
 
         // hyperlink config
         this.hyperlink = this.generateConfigHyperlinks();
