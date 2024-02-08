@@ -1,6 +1,6 @@
 {
   "name": "luckyexcel-node",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "An excel import and export library adapted to Luckysheet",
   "main": "dist/luckyexcel.cjs.js",
   "module": "dist/luckyexcel.esm.js",
